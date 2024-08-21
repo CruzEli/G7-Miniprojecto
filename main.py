@@ -8,7 +8,7 @@ class Inicio:
         self.ventana.state('zoomed')
         self.ventana.resizable(0, 0)
 
-        self.bg_frame = Image.open('G7-Miniprojecto/main/_images_/background1.png')
+        self.bg_frame = Image.open('img/background1.png')
         foto = ImageTk.PhotoImage(self.bg_frame) 
         self.bg_panel = tk.Label(self.ventana, image=foto)
         self.bg_panel.image = foto
@@ -25,7 +25,7 @@ class Inicio:
 
 
         # Imágen lateral izquierda
-        self.imagen_lateral = Image.open('G7-Miniprojecto/main/_images_/vector.png')
+        self.imagen_lateral = Image.open('img/vector.png')
         foto = ImageTk.PhotoImage(self.imagen_lateral) 
         self.imagen_lateral_label = tk.Label(self.lgn_frame, image=foto, bg='#000000')
         self.imagen_lateral_label.image = foto
@@ -33,7 +33,7 @@ class Inicio:
 
 
         # Botón preguntados (LLeva al inicio del juego)
-        self.preguntados = Image.open('G7-Miniprojecto/main/_images_/preguntadoss.png')
+        self.preguntados = Image.open('img/preguntadoss.png')
         self.preguntados = self.preguntados.resize((200, 200))  # Cambia el tamaño según necesites
         foto = ImageTk.PhotoImage(self.preguntados)
         self.preguntados_button = tk.Button(self.lgn_frame, image=foto, bg='#000000', borderwidth=0)

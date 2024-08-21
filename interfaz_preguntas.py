@@ -1,79 +1,60 @@
 import tkinter as tk
+from PIL import ImageTk, Image
 
-class QuizWindow:
-    def __init__(self, window):
-        self.window = window
-        self.window.geometry("1166x718")
-        self.window.state("zoomed")
-        self.window.resizable(False, False)
+class InterfazPreguntas(tk.Frame):
+    def __init__(self, vent, pregunta):
+        self.pregunta = pregunta
+        self.vent = vent
+        self.vent.geometry("480x550")
+        self.vent.resizable(False, False)
+        self.vent.config(bg="grey")
 
+        # Cuadro de la pregunta
+        self.frame_1 = tk.Frame(self.vent)
+        self.frame_1.place(relx=0.025, rely=0.025,relwidth=0.95, relheight=0.35)
+        
+        # Cuadro de opciones
+        self.frame_2 = tk.Frame(self.vent, bg="grey")
+        self.frame_2.place(relx=0.025, rely=0.5,relwidth=0.95, relheight=0.475)
+        
+        # Etiquetas
+        self.lbl_categoria = tk.Label(self.frame_1, text=self.pregunta.categoria)
+        self.lbl_categoria.pack()
+        self.lbl_pregunta = tk.Label(self.frame_1, text=self.pregunta.pregunta)
+        self.lbl_pregunta.pack(expand=True, fill="both")
+        self.lbl_reloj = tk.Label(self.vent, text="reloj")
+        self.lbl_reloj.place(relx=0.4, rely=0.4, relwidth=.2, relheight=.075)
+        
+        # Botones
+        self.btn_opcion_A = tk.Button(self.frame_2, text=self.pregunta.opc_a)
+        self.btn_opcion_A.place(relx=0, rely=0, relwidth=1, relheight=.22)
+        self.btn_opcion_B = tk.Button(self.frame_2, text=self.pregunta.opc_b)
+        self.btn_opcion_B.place(relx=0, rely=.26, relwidth=1, relheight=.22)
+        self.btn_opcion_C = tk.Button(self.frame_2, text=self.pregunta.opc_c)
+        self.btn_opcion_C.place(relx=0, rely=.52, relwidth=1, relheight=.22)
+        self.btn_opcion_D = tk.Button(self.frame_2, text=self.pregunta.opc_d)
+        self.btn_opcion_D.place(relx=0, rely=.78, relwidth=1, relheight=.22)
+   
+
+
+class Preguntas:
+    def __init__(self, categoria, pregunta, opc_a, opc_b,
+                 opc_c, opc_d, opc_correc):
+        self.categoria = categoria
+        self.pregunta = pregunta
+        self.opc_a = opc_a
+        self.opc_b = opc_b
+        self.opc_c = opc_c
+        self.opc_d = opc_d
+        self.opc_correc = opc_correc
+        
+preg_1 = Preguntas("Ciencia", "Cual es el pigmento que les da a las plantas el color verde?",
+                   "Cloroformo", "Clorofila", "Cloroverde", "Cloroalgo", "Clorofila")
 
 def page():
-    window = tk.Tk()
-    QuizWindow(window)
-    window.mainloop()
-
+    ventana = tk.Tk()
+    InterfazPreguntas(ventana, preg_1)
+    ventana.mainloop()
 
 if __name__ == "__main__":
     page()
-
-
-# ventana = tk.Tk()
-
-# # Obtener dimensiones de la pantalla
-# ancho_pantalla = ventana.winfo_screenwidth()
-# alto_pantalla = ventana.winfo_screenheight()
-
-# # Dimensiones de la ventana y calculo de coordenadas
-# ancho_ventana = 480
-# alto_ventana = 548
-# posicion_x = (ancho_pantalla-ancho_ventana)/2   # Para centrar la ventana en la pantalla
-# posicion_y = (alto_pantalla-alto_ventana)/2
-
-# ventana.title("Preguntas")
-# ventana.geometry(f"{ancho_ventana}x{alto_ventana}+{int(posicion_x)}+{int(posicion_y)}")
-# ventana.resizable(False, False)     # Bloquea el tamaño de la ventana
-
-# # Marcos
-# frame_pregunta = tk.Frame(ventana)
-# frame_pregunta.configure(width=460, height=200, bg="red")
-# frame_pregunta.pack()
-
-# # Etiquetas
-# label_categoria = tk.Label(frame_pregunta, text="Categoría", bg="yellow")
-# label_categoria.pack()
-
-# # Texto
-# # text_pregunta = tk.Text(frame_pregunta)
-# # text_pregunta.config(width= 440, height= 150, selectbackground="red", bg="blue")
-# # text_pregunta.pack()
-
-# # Botones
-# boton_A = tk.Button(ventana, text= "Opcion A", padx= 150, pady= 10)
-# boton_A.pack()
-
-# boton_B = tk.Button(ventana, text= "Opcion B", padx= 150, pady= 10)
-# boton_B.pack()
-
-# boton_C = tk.Button(ventana, text= "Opcion C", padx= 150, pady= 10)
-# boton_C.pack()
-
-# boton_D = tk.Button(ventana, text= "Opcion Dddddddddddddddddddddddddddddd", padx= 150, pady= 10)
-# boton_D.pack()
-
-# # Iniciacion de la ventana
-# ventana.mainloop()
-
-
-# class Preguntas:
-#     def __init__(self, titulo,opcion_a, correcta):
-#         self.titulo = titulo
-#         self.opcion_a = opcion_a
-#         self.correcta =correcta
-
-# preguntas = []
-# for item in range(1, 10):
-#     preguntas.append(Preguntas(f"titulo{item}", "opcion1","opcion1" ))
-
-# for i in preguntas:
-#     print(i.titulo)
