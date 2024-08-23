@@ -1,7 +1,8 @@
 import tkinter as tk
 from PIL import ImageTk, Image
+# from . import interfaz_preguntas
 
-class Inicio:
+class Inicio(tk.Tk):
     def __init__(self, ventana):
         self.ventana = ventana
         self.ventana.geometry('1166x718')
@@ -31,11 +32,14 @@ class Inicio:
         self.imagen_lateral_label.image = foto
         self.imagen_lateral_label.place(x=5, y=100)
 
-
+        def hola():
+            print("hola")
+        
         # Botón preguntados (LLeva al inicio del juego)
         self.preguntados = Image.open('img/preguntadoss.png')
         self.preguntados = self.preguntados.resize((200, 200))  # Cambia el tamaño según necesites
         foto = ImageTk.PhotoImage(self.preguntados)
+        self.preguntados_button = tk.Button(self.lgn_frame, image=foto, bg='#000000', borderwidth=0)
         self.preguntados_button = tk.Button(self.lgn_frame, image=foto, bg='#000000', borderwidth=0)
         self.preguntados_button.image = foto
         self.preguntados_button.place(x=625, y=125)   

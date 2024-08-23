@@ -1,7 +1,8 @@
 import tkinter as tk
-from PIL import ImageTk, Image
+#from PIL import ImageTk, Image
+import pandas as pd
 
-class InterfazPreguntas(tk.Frame):
+class InterfazPreguntas(tk.Tk):
     def __init__(self, vent, pregunta):
         self.pregunta = pregunta
         self.vent = vent
@@ -51,10 +52,13 @@ class Preguntas:
 preg_1 = Preguntas("Ciencia", "Cual es el pigmento que les da a las plantas el color verde?",
                    "Cloroformo", "Clorofila", "Cloroverde", "Cloroalgo", "Clorofila")
 
-def page():
+def page_preguntas():
     ventana = tk.Tk()
     InterfazPreguntas(ventana, preg_1)
     ventana.mainloop()
 
 if __name__ == "__main__":
-    page()
+    page_preguntas()
+
+df = pd.read_excel("data/bbdd_preguntas.xlsx")
+print(df.head())
