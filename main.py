@@ -4,7 +4,7 @@ from PIL import ImageTk, Image
 class Inicio:
     def __init__(self, ventana):
         self.ventana = ventana
-        self.ventana.geometry('1166x718')
+        self.ventana.geometry('480x550')
         self.ventana.state('zoomed')
         self.ventana.resizable(0, 0)
 
