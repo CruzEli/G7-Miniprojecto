@@ -1,5 +1,6 @@
 import tkinter as tk
 from PIL import ImageTk, Image
+import categorias
 
 class Inicio:
     def __init__(self, ventana):
@@ -17,12 +18,10 @@ class Inicio:
         self.lgn_frame = tk.Frame(self.ventana, bg='#000000', width='950', height=600)
         self.lgn_frame.place(x=200, y=70)
 
-
         # Título lateral superior izquierdo
         self.txt = 'PREGUNTADOS'
         self.encabezado = tk.Label(self.lgn_frame, text=self.txt, font=('yu gothic ui', 25, 'bold'), bg='#000000', fg='white') 
         self.encabezado.place(x=80, y=30, width=300, height=30)
-
 
         # Imágen lateral izquierda
         self.imagen_lateral = Image.open('img/vector.png')
@@ -31,14 +30,17 @@ class Inicio:
         self.imagen_lateral_label.image = foto
         self.imagen_lateral_label.place(x=5, y=100)
 
-
         # Botón preguntados (LLeva al inicio del juego)
         self.preguntados = Image.open('img/preguntadoss.png')
-        self.preguntados = self.preguntados.resize((200, 200))  # Cambia el tamaño según necesites
+        self.preguntados = self.preguntados.resize((200, 200))
         foto = ImageTk.PhotoImage(self.preguntados)
-        self.preguntados_button = tk.Button(self.lgn_frame, image=foto, bg='#000000', borderwidth=0)
+        self.preguntados_button = tk.Button(self.lgn_frame, image=foto, bg='#000000', borderwidth=0, command=self.abrir_categorias)
         self.preguntados_button.image = foto
-        self.preguntados_button.place(x=625, y=125)   
+        self.preguntados_button.place(x=625, y=125)
+
+    def abrir_categorias(self):
+        self.ventana.withdraw()  
+        categorias.mostrar_categorias()  
 
 def page():
     ventana = tk.Tk()
@@ -47,3 +49,4 @@ def page():
 
 if __name__ == '__main__':
     page()
+
