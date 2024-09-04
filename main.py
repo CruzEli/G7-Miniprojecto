@@ -39,7 +39,7 @@ class Inicio:
         self.preguntados_button.place(x=625, y=125)
 
     def abrir_categorias(self):
-        self.ventana.withdraw()  
+        self.ventana.destroy() 
         categorias.mostrar_categorias()  
 
 def page():
