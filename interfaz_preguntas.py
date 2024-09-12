@@ -100,14 +100,12 @@ class InterfazPreguntas(tk.Frame):
         if str(qtn.opc_correc) == txt.get():
             print("Respuesta correcta")
             self.correctas += 1 
-            btn.config(bg="green")
         else:
             print("Respuesta incorrecta")
             self.incorrectas += 1
-            btn.config(bg="red")
         
         time.sleep(5)
-        #
+        
             
     def countdown(self):
         if self.time_limit > 0:
