@@ -16,6 +16,8 @@ class InterfazPreguntas(tk.Frame):
         self.time_limit = 60    # Tiempo limite para responder
         self.countdown()
         self.contador = 0
+        self.correctas = 0
+        self.incorrectas = 0
         self.set_preguntas()
     
     def crear_preguntas(df, categoria):
@@ -90,17 +92,22 @@ class InterfazPreguntas(tk.Frame):
             self.abrir_resultados()
     
     def chequear_preguntas(self, txt, btn):
+        #btn.config(bg="#ffe3c7")
         qtn = self.preguntas[self.contador-1]
+
         print(f"Correcta: {qtn.opc_correc}")
         print(f"Elegida: {txt.get()}")
         if str(qtn.opc_correc) == txt.get():
             print("Respuesta correcta")
+            self.correctas += 1 
             btn.config(bg="green")
         else:
             print("Respuesta incorrecta")
+            self.incorrectas += 1
             btn.config(bg="red")
-        time.sleep(2)
-        btn.config(bg="#ffe3c7")
+        
+        time.sleep(5)
+        #
             
     def countdown(self):
         if self.time_limit > 0:
@@ -114,7 +121,8 @@ class InterfazPreguntas(tk.Frame):
     def abrir_resultados(self):
         self.vent.destroy()
         ventana = tk.Tk()
-        Resultados(ventana)
+        
+        Resultados(ventana, self.contador, self.correctas, self.incorrectas)
         ventana.mainloop()
    
 
