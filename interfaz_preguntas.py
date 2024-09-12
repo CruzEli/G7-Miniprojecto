@@ -104,7 +104,7 @@ class InterfazPreguntas(tk.Frame):
             print("Respuesta incorrecta")
             self.incorrectas += 1
         
-        time.sleep(5)
+        time.sleep(1)
         
             
     def countdown(self):
