@@ -1,5 +1,5 @@
 import tkinter as tk
-# from PIL import ImageTk, Image
+import pandas as pd
 import time
 from resultados import Resultados
 
@@ -17,7 +17,24 @@ class InterfazPreguntas(tk.Frame):
         self.countdown()
         self.contador = 0
         self.set_preguntas()
-        
+    
+    def crear_preguntas(df, categoria):
+        preguntas = []
+        df_filtrado = df[df["Categoría"] == categoria]
+
+        for fila in df_filtrado.iterrows():
+            pregunta = Preguntas(
+                fila["Categoría"],
+                fila["Pregunta"],
+                fila["Opción A"],
+                fila["Opción B"],
+                fila["Opción C"],
+                fila["Opción D"],
+                fila["Correcta"]
+            )
+            preguntas.append(pregunta)
+        return preguntas
+
     def crear_widgets(self):
         self.frame_1 = tk.Frame(self.vent)
         self.frame_1.place(relx=0.025, rely=0.025,relwidth=0.95, relheight=0.35)
@@ -113,20 +130,19 @@ class Preguntas:
         self.opc_d = opc_d
         self.opc_correc = opc_correc
         
-# preg_1 = Preguntas("Ciencia", "Cual es el pigmento que les da a las plantas el color verde?",
-#                    "Cloroformo", "Clorofila", "Cloroverde", "Cloroalgo", "Clorofila")
-# preg_2 = Preguntas("ARTE", "Cual es el pigmento que les da a las plantas el color verde?",
-#                    "Cloroformo", "Clorofila", "Cloroverde", "Cloroalgo", "Clorofila")
-# preg_3 = Preguntas("Ciencia", "Cual es el pigmento que les da a las plantas el color verde?",
-#                    "Cloroformo", "Clorofila", "Cloroverde", "Cloroalgo", "Clorofila")
-# preg_4 = Preguntas("Deporte", "Cual es el pigmento que les da a las plantas el color verde?",
-#                    "Cloroformo", "Clorofila", "Cloroverde", "Cloroalgo", "Clorofila")
-# questions = [preg_1, preg_2, preg_3, preg_4]     
 
-def page():
+def cargar_preguntas_excel(ruta_excel, categoria):
+    df = pd.read_excel(ruta_excel)
+    return InterfazPreguntas.crear_preguntas(df, categoria)
+
+
+def page(ruta_excel, categoria):
+    preguntas = cargar_preguntas_excel(ruta_excel, categoria)
     ventana = tk.Tk()
-    InterfazPreguntas(ventana, questions)
+    InterfazPreguntas(ventana, preguntas)
     ventana.mainloop()
 
 if __name__ == "__main__":
-    page()
+    ruta_excel = "data/bbdd_preguntas.xlsx"  
+    categoria = "Ciencia"
+    page(ruta_excel, categoria)

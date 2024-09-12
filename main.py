@@ -5,6 +5,7 @@ import categorias
 class Inicio:
     def __init__(self, ventana):
         self.ventana = ventana
+        self.ventana.title('Inicio')
         self.ventana.geometry('480x550')
         self.ventana.state('zoomed')
         self.ventana.resizable(0, 0)
