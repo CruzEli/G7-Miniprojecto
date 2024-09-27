@@ -38,6 +38,8 @@ https://drive.google.com/file/d/1yvzf1UwmNEVuwlVUN-tvp-gjW9YZDbDS/view?usp=shari
 
 *Ubicarse en la carpeta G7-Miniprojecto.*
 
+*Instalar las librerias necesarias con el siguiente comando:*
+`pip install -r requirements.txt`
 
 *Ejecutar el comando por consola: py main.py*
 
